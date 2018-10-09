@@ -110,7 +110,7 @@ ONBLD_TOOLS=		$(BUILD_TOOLS)/onbld
 
 JAVA_ROOT=	/usr/java
 
-GCC_ROOT=	/opt/gcc/4.4.4
+GCC_ROOT=	/opt/gcc-4.4.4
 GCCLIBDIR=	$(GCC_ROOT)/lib
 GCCLIBDIR64=	$(GCC_ROOT)/lib/$(MACH64)
 
