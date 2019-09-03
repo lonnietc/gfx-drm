@@ -2783,12 +2783,11 @@ static bool intel_crtc_has_pending_flip(struct drm_crtc *crtc)
 
 static void intel_crtc_wait_for_pending_flips(struct drm_crtc *crtc)
 {
-	/* LINTED */
-	int ret;
+	int ret __unused;
 
 	struct drm_device *dev = crtc->dev;
 	struct drm_i915_private *dev_priv = dev->dev_private;
-	
+
 	if (crtc->fb == NULL)
 		return;
 
@@ -6006,6 +6005,7 @@ static bool haswell_get_pipe_config(struct intel_crtc *crtc,
 		switch (tmp & TRANS_DDI_EDP_INPUT_MASK) {
 		default:
 			DRM_ERROR("unknown pipe linked to edp transcoder\n");
+			/* Fallthrough */
 		case TRANS_DDI_EDP_INPUT_A_ONOFF:
 		case TRANS_DDI_EDP_INPUT_A_ON:
 			trans_edp_pipe = PIPE_A;
@@ -7746,6 +7746,7 @@ compute_baseline_pipe_bpp(struct intel_crtc *crtc,
 		/* checked in intel_framebuffer_init already */
 		if (INTEL_INFO(dev)->gen > 3)
 			return -EINVAL;
+		/* Fallthrough */
 	case DRM_FORMAT_RGB565:
 		bpp = 6*3; /* min is 18bpp */
 		break;
@@ -7754,6 +7755,7 @@ compute_baseline_pipe_bpp(struct intel_crtc *crtc,
 		/* checked in intel_framebuffer_init already */
 		if (INTEL_INFO(dev)->gen < 4)
 			return -EINVAL;
+		/* Fallthrough */
 	case DRM_FORMAT_XRGB8888:
 	case DRM_FORMAT_ARGB8888:
 		bpp = 8*3;
@@ -8660,8 +8662,7 @@ intel_modeset_stage_output_state(struct drm_device *dev,
 	struct drm_crtc *new_crtc;
 	struct intel_connector *connector;
 	struct intel_encoder *encoder;
-	/* LINTED */
-	int count, ro;
+	int count __unused, ro;
 
 	/* The upper layers ensure that we either disabl a crtc or have a list
 	 * of connectors. For paranoia, double-check this. */
@@ -10017,8 +10018,7 @@ void intel_modeset_cleanup(struct drm_device *dev)
 {
 	struct drm_i915_private *dev_priv = dev->dev_private;
 	struct drm_crtc *crtc;
-	/* LINTED */
-	struct intel_crtc *intel_crtc;
+	struct intel_crtc *intel_crtc __unused;
 
 	/*
 	 * Interrupts and polling as the first thing to avoid creating havoc.

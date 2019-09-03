@@ -2917,7 +2917,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
 				     struct intel_ring_buffer *pipelined)
 {
 	/* LINTED */
-	u32 old_read_domains, old_write_domain;
+	u32 old_read_domains __unused, old_write_domain __unused;
 	int ret;
 
 	if (pipelined != obj->ring) {
@@ -2988,7 +2988,7 @@ int
 i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write)
 {
 	/* LINTED */
-	uint32_t old_write_domain, old_read_domains;
+	uint32_t old_write_domain __unused, old_read_domains __unused;
 	int ret;
 
 	if (obj->base.write_domain == I915_GEM_DOMAIN_CPU)
