@@ -813,7 +813,7 @@ i915_wait_seqno(struct intel_ring_buffer *ring, uint32_t seqno)
 
 	return __wait_seqno(ring, seqno,
 			    atomic_read(&dev_priv->gpu_error.reset_counter),
-			    interruptible, NULL);
+			    interruptible, 0);
 }
 
 static int
@@ -889,7 +889,7 @@ i915_gem_object_wait_rendering__nonblocking(struct drm_i915_gem_object *obj,
 
 	reset_counter = atomic_read(&dev_priv->gpu_error.reset_counter);
 	mutex_unlock(&dev->struct_mutex);
-	ret = __wait_seqno(ring, seqno, reset_counter, true, NULL);
+	ret = __wait_seqno(ring, seqno, reset_counter, true, 0);
 	mutex_lock(&dev->struct_mutex);
 	if (ret)
 	return ret;
@@ -1966,7 +1966,7 @@ i915_gem_wait_ioctl(DRM_IOCTL_ARGS)
 	struct drm_i915_gem_wait *args = data;
 	struct drm_i915_gem_object *obj;
 	struct intel_ring_buffer *ring = NULL;
-	clock_t timeout = NULL;
+	clock_t timeout = 0;
 	unsigned reset_counter;
 	u32 seqno = 0;
 	int ret = 0;
@@ -2917,7 +2917,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
 				     struct intel_ring_buffer *pipelined)
 {
 	/* LINTED */
-	u32 old_read_domains, old_write_domain;
+	u32 old_read_domains __unused, old_write_domain __unused;
 	int ret;
 
 	if (pipelined != obj->ring) {
@@ -2988,7 +2988,7 @@ int
 i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write)
 {
 	/* LINTED */
-	uint32_t old_write_domain, old_read_domains;
+	uint32_t old_write_domain __unused, old_read_domains __unused;
 	int ret;
 
 	if (obj->base.write_domain == I915_GEM_DOMAIN_CPU)
@@ -3069,7 +3069,7 @@ i915_gem_ring_throttle(struct drm_device *dev, struct drm_file *file)
 	if (seqno == 0)
 		return 0;
 
-	ret = __wait_seqno(ring, seqno, reset_counter, true, NULL);
+	ret = __wait_seqno(ring, seqno, reset_counter, true, 0);
 	if (ret == 0)
 		test_set_timer(&dev_priv->mm.retire_timer, 0);
 

@@ -2046,10 +2046,11 @@ intel_dp_start_link_train(struct intel_dp *intel_dp)
 	struct drm_device *dev = encoder->dev;
 	int i;
 	uint8_t voltage;
-	/* LINTED */
-	bool clock_recovery = false;
+	bool clock_recovery __unused;
 	int voltage_tries, loop_tries;
 	uint32_t DP = intel_dp->DP;
+
+	clock_recovery = false;
 
 	if (HAS_DDI(dev))
 		intel_ddi_prepare_link_retrain(encoder);

@@ -27,7 +27,8 @@ LIBDRM_VERS=2.4.75
 
 LIBDRM_DIR=libdrm-$(LIBDRM_VERS)
 LIBDRM_ARCHIVE=$(LIBDRM_DIR).tar.bz2
-LIBDRM_URL=http://dri.freedesktop.org/libdrm/$(LIBDRM_ARCHIVE)
+#LIBDRM_URL=http://dri.freedesktop.org/libdrm/$(LIBDRM_ARCHIVE)
+LIBDRM_URL=https://mirrors.omniosce.org/gfx-drm/$(LIBDRM_ARCHIVE)
 LIBDRM_HASH=sha256:2d5a500eef412cc287d12268eed79d571e262d4957a2ec9258073f305985054f
 
 def all install install_h: .patched check

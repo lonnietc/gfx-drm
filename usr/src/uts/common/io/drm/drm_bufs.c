@@ -117,8 +117,7 @@ static int drm_addmap_core(struct drm_device *dev, unsigned long offset,
 {
 	struct drm_local_map *map;
 	struct drm_map_list *list;
-	/* LINTED */
-	unsigned long user_token;
+	unsigned long user_token __unused;
 	int ret;
 
 	map = kmalloc(sizeof(*map), GFP_KERNEL);
@@ -373,8 +372,7 @@ int drm_rmmap_locked(struct drm_device *dev, struct drm_local_map *map)
 	/* LINTED */
 	drm_dma_handle_t dmah;
 	int found = 0;
-	/* LINTED */
-	struct drm_master *master;
+	struct drm_master *master __unused;
 
 	/* Find the list entry for the map and remove it */
 	list_for_each_entry_safe(r_list, list_t, struct drm_map_list, &dev->maplist, head) {
